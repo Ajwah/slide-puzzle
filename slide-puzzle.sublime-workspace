@@ -1,0 +1,723 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"cats",
+				"catsAndDogs"
+			],
+			[
+				"Rub",
+				"RubyConstant"
+			],
+			[
+				"tr",
+				"true"
+			],
+			[
+				"cars",
+				"cars_not_driven"
+			],
+			[
+				"z",
+				"z"
+			],
+			[
+				"has",
+				"hasNext"
+			],
+			[
+				"oppone",
+				"opponents"
+			],
+			[
+				"pair",
+				"pairUpOpponents"
+			],
+			[
+				"ge",
+				"getOpponentDetails"
+			],
+			[
+				"geto",
+				"getOpponentDetails"
+			],
+			[
+				"pla",
+				"players"
+			],
+			[
+				"get",
+				"getPlausibleOpponents"
+			],
+			[
+				"floor",
+				"floor_p_improved"
+			],
+			[
+				"fl",
+				"fl_perm"
+			],
+			[
+				"flo",
+				"floor_puzzle"
+			],
+			[
+				"per",
+				"permutations	(Zebra Puzzle.py)"
+			],
+			[
+				"timedca",
+				"timedCall"
+			],
+			[
+				"zebr",
+				"zebra_puzzle"
+			],
+			[
+				"time",
+				"timedCall"
+			],
+			[
+				"ze",
+				"zebra_puzzle"
+			],
+			[
+				"ma",
+				"magic_print"
+			],
+			[
+				"is",
+				"isNextTo"
+			],
+			[
+				"tes",
+				"test_best_hand"
+			],
+			[
+				"te",
+				"test_best_hand"
+			],
+			[
+				"two",
+				"two_pair"
+			],
+			[
+				"card",
+				"card_ranks"
+			],
+			[
+				"ca",
+				"card_ranks"
+			],
+			[
+				"p",
+				"poker"
+			],
+			[
+				"my",
+				"my_Function	(docstring.py)"
+			],
+			[
+				"reduce",
+				"reduceAll"
+			],
+			[
+				"delete",
+				"deleteRepeats"
+			],
+			[
+				"re",
+				"result"
+			],
+			[
+				"opp",
+				"opponents"
+			],
+			[
+				"tmp",
+				"tmp"
+			],
+			[
+				"r",
+				"registerPlayer(\"Shubacka	(tournament.py)"
+			],
+			[
+				"rp",
+				"replaceAllRepeatsZero"
+			],
+			[
+				"extra",
+				"extrasToExclude"
+			],
+			[
+				"el",
+				"elif"
+			],
+			[
+				"amount",
+				"amount_matches"
+			],
+			[
+				"count",
+				"countPlayers"
+			],
+			[
+				"name",
+				"namedtuple"
+			],
+			[
+				"DB",
+				"DB"
+			],
+			[
+				"upda",
+				"update_MW_OMW"
+			],
+			[
+				"match",
+				"matches_played"
+			],
+			[
+				"play",
+				"playerStandings"
+			],
+			[
+				"player",
+				"playerHistory"
+			],
+			[
+				"pl",
+				"playerHistory"
+			],
+			[
+				"add",
+				"addColumnToOpponentHist"
+			],
+			[
+				"glob",
+				"global_tmp"
+			],
+			[
+				"opponent",
+				"opponenthistory	(tournament.py)"
+			],
+			[
+				"up",
+				"updateOpponentHistory"
+			],
+			[
+				"playe",
+				"player_id"
+			],
+			[
+				"oppon",
+				"opponent_id"
+			],
+			[
+				"crea",
+				"create_rows"
+			],
+			[
+				"tabl",
+				"tableContents"
+			],
+			[
+				"string",
+				"stringify"
+			],
+			[
+				"col",
+				"colSizes"
+			],
+			[
+				"creat",
+				"create_tournament"
+			],
+			[
+				"dele",
+				"deleteMatches"
+			],
+			[
+				"matc",
+				"matches_played"
+			],
+			[
+				"de",
+				"description"
+			],
+			[
+				"for",
+				"for	for (…) {…} (minus)"
+			],
+			[
+				"fo",
+				"for	for (…) {…} (plus) "
+			],
+			[
+				"con",
+				"con	console"
+			],
+			[
+				"lo",
+				"log(${0:$TM_SELECTED_TEXT"
+			],
+			[
+				"fun",
+				"fun	Anonymous Function"
+			],
+			[
+				"fu",
+				"fun	Anonymous Function"
+			],
+			[
+				"f",
+				"function"
+			],
+			[
+				"if",
+				"ife	if … else"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 375.0,
+		"last_filter": "inst",
+		"selected_items":
+		[
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"stacko",
+				"Stackoverflow: Search Selection"
+			],
+			[
+				"pa",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"packa",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: List Unmanaged Packages"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"packa ",
+				"Package Control: Remove Package"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 579.0
+	},
+	"console":
+	{
+		"height": 243.0,
+		"history":
+		[
+			"clear",
+			"jscs",
+			"node",
+			"jscs",
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/Coder/Web Development/projects/books/jquery-hotshots/slide-puzzle"
+	],
+	"file_history":
+	[
+		"/Users/Coder/Desktop/Programming/Ruby/Tutorials/koans/[31m  Exception FillMeInError expected, but #<ArgumentError",
+		"/Users/Coder/Desktop/Programming/Ruby/Tutorials/koans/[31m  Exception FillMeInError expected, but #<NoMethodError",
+		"/Users/Coder/Desktop/hello.cgi",
+		"/Users/Coder/Documents/Ruby/prep-course/ruby-oop/fizzbuzz/fizzbuzz.rb",
+		"/Users/Coder/Documents/Ruby/The Hard Way/input.rb",
+		"/Users/Coder/Documents/Ruby/The Hard Way/formatting String.rb",
+		"/Users/Coder/Documents/Ruby/The Hard Way/variables.rb",
+		"/Users/Coder/Documents/Ruby/The Hard Way/Numbers - Math.rb",
+		"/Users/Coder/Documents/Ruby/The Hard Way/Hello.rb",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/Ruby/ruby.tmLanguage",
+		"/Users/Coder/Documents/Ruby/The Hard Way/sample.txt",
+		"/Users/Coder/Documents/Ruby/The Hard Way/files.rb",
+		"/Users/Coder/Documents/Ruby/The Hard Way/arguments.rb",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/SublimeREPL/SublimeREPL.sublime-settings",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/User/SublimeREPL.sublime-settings",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/Coder/Documents/Python/Hackerrank/Sorting/insertionsort.py",
+		"/Users/Coder/Documents/Python/Design Computer Programs/palindrome.py",
+		"/Users/Coder/Documents/Python/Design Computer Programs/floor.py",
+		"/Users/Coder/Documents/Python/Design Computer Programs/Zebra Puzzle.py",
+		"/Users/Coder/Documents/Python/Design Computer Programs/poker.py",
+		"/Users/Coder/Documents/Python/Design Computer Programs/new_syntaxes.py",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/User/Python-REPL.sublime-build",
+		"/Users/Coder/Documents/Python/Design Computer Programs/test_docstring.py",
+		"/Users/Coder/Documents/Python/Design Computer Programs/docstring.py",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
+		"/Users/Coder/Documents/Python/fullstack/vagrant/tournament/tournament.py",
+		"/Users/Coder/Documents/Python/fullstack/vagrant/forum/forumdb.py",
+		"/Users/Coder/Documents/Python/fullstack/vagrant/forum/forum.py",
+		"/Users/Coder/.zshrc",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/JavaScript/function.sublime-snippet",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/JavaScript/console.sublime-snippet",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/JavaScript/hello.sublime-snippet",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/JavaScript/for-()-{}-(faster).sublime-snippet",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/JavaScript/if.sublime-snippet",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/JavaScript/if-___-else.sublime-snippet",
+		"/Users/Coder/Documents/Sublime/Web Development/.jscsrc",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/User/swi.sublime-settings",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/JavaScript/for-()-{}.sublime-snippet",
+		"/Users/Coder/Web Development/.jscsrc",
+		"/Users/Coder/Web Development/test.js",
+		"/Users/Coder/Documents/Sublime/Web Development/test.js",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/Web Inspector/swi.sublime-settings",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/MacTerminal/MacTerminal.sublime-settings",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/User/MacTerminal.sublime-settings",
+		"/Users/Coder/Library/Application Support/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings"
+	],
+	"find":
+	{
+		"height": 33.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"You",
+			"__",
+			",",
+			"puts.",
+			"puts",
+			"reduce",
+			"iter",
+			" ",
+			"playerS",
+			"Players",
+			"players",
+			"%{",
+			"%",
+			"pal(",
+			"l",
+			"[",
+			" and k != ",
+			":",
+			"sorted_x",
+			"kools",
+			"&&",
+			"],",
+			" ",
+			"!",
+			" ",
+			"  ",
+			" ",
+			"  ",
+			"16230665626829539496846364846421605068633496266642366974186440156905776357124865070099134537692178454550839680039648529831285635023472517919607395124877838728232345141436363969350401288100633039252897589804532630491902403871988594576874275459608054864968620046239403370285569585012407419130091993525295079534895248171253087770436583291478528519821152686366355858015800687162625897427755152129419732981148106944090292626111240902185701945759962562685463018060900637907207649248116836289483912135423843352640032864142166501087219827006118049344055876246941363337018309048510298623616477341561470575671279056158030626841",
+			"',",
+			" ",
+			"  ",
+			"print",
+			"    # Your code here.\n",
+			"    # Your code here\n",
+			"    # Your code here.\n",
+			">>> ",
+			"iterable",
+			"swissPairings",
+			"hierarchy",
+			"opponentHistory",
+			"def",
+			"q",
+			"|",
+			"657",
+			"664",
+			"660",
+			"657",
+			"665",
+			"668",
+			"665",
+			"658",
+			"657",
+			"660",
+			"664",
+			"665",
+			"657",
+			"660",
+			"657",
+			"664",
+			"tmp",
+			"extrasToExclude",
+			"print",
+			"extra",
+			"desc",
+			"where",
+			"from",
+			"update_MW_OMW",
+			"desc",
+			"execute",
+			"numeric",
+			"update ",
+			"update",
+			"Update",
+			"update",
+			"execute",
+			" desc ",
+			"desc",
+			"order by",
+			"execute",
+			"add column",
+			"alter table ",
+			"execute",
+			"default",
+			"values ",
+			"insert into ",
+			"execute",
+			" AS ",
+			" as ",
+			"drop table if exists ",
+			"create table ",
+			"SELECT ",
+			"select ",
+			" from ",
+			" FROM ",
+			" from ",
+			"select ",
+			"SELECT ",
+			"select ",
+			"delete from",
+			"delete from ",
+			" WHERE ",
+			" where ",
+			" WHERE ",
+			" where ",
+			" WHERE ",
+			" where ",
+			" SET ",
+			" set ",
+			"set",
+			"update",
+			"UPDATE",
+			"update",
+			"Update",
+			"update",
+			"'opp[{0}] \"{0}\", '.format(str(i+1))",
+			"return",
+			"not",
+			"loop",
+			"in",
+			"for",
+			"end",
+			"then",
+			"is",
+			"if",
+			"begin",
+			"declare",
+			"returns"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"´",
+			"i´"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 33.0
+	},
+	"input":
+	{
+		"height": 33.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 418.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Packages/Ruby/Ruby.sublime-build",
+	"project": "slide-puzzle.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"abtkey",
+				"about_keyword_arguments.rb"
+			],
+			[
+				"abmeth",
+				"about_methods.rb"
+			],
+			[
+				"regul",
+				"about_regular_expressions.rb"
+			],
+			[
+				"aboutsym",
+				"about_symbols.rb"
+			],
+			[
+				"aboutstr",
+				"about_strings.rb"
+			],
+			[
+				"",
+				"Package Control Messages"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 375.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 378.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": false,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 125.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
