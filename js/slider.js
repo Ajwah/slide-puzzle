@@ -14,8 +14,8 @@
   };
 
   /**
-   * Obtain the ratio provided as html attr to img
-   * which describes division of img in different sliding blocks
+   * Obtain the ratio provided as html attr to img which
+   * describes division of img in different sliding blocks
    * @return {Record of int} w: amount blocks width-wise, h: # blocks height wise, t: total
    */
   var getRatio = function(){
@@ -24,12 +24,21 @@
     return {w: w, h: h, t: h*w};
   };
 
+  /**
+   * Obtain the url from img
+   * @return {String} path of image file
+   */
+  var getUrl = function(){
+    return $('img').attr('src');
+  };
+
   window.Model = {
     getDim: getDim,
-    getRatio: getRatio
+    getRatio: getRatio,
+    getUrl: getUrl
   };
 })();
 
 $(document).ready(
-  console.log(Model.getRatio())
+  console.log(Model.getUrl())
 );
