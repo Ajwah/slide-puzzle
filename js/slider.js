@@ -16,12 +16,12 @@
   /**
    * Obtain the ratio provided as html attr to img which
    * describes division of img in different sliding blocks
-   * @return {Record of int} w: amount blocks width-wise, h: # blocks height wise, t: total
+   * @return {Record of int} w: amount blocks width-wise, h: # blocks height wise
    */
   var getRatio = function(){
     var h = +$('img').attr("ratio").split(':')[1]
         w = +$('img').attr("ratio").split(':')[0];
-    return {w: w, h: h, t: h*w};
+    return {w: w, h: h};
   };
 
   /**
@@ -60,6 +60,7 @@
    *                         h: step-size height-wise
    *                         aw: amount of steps width-wise
    *                         ah: amount of steps height-wise
+   *                         t: total amount of sliding blocks
    */
   var getSteps = function(){
     var d = M.getDim(),
@@ -68,6 +69,7 @@
             h: Math.floor(d.h/r.h),
             aw: r.w,
             ah: r.h
+            t: r.w * r.h
            };
   };
 
@@ -76,7 +78,6 @@
     getSteps: getSteps
   };
 })();
-
 
 $(document).ready(
   console.log(C.getSteps())
