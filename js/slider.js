@@ -19,7 +19,7 @@
    * @return {Record of int} w: amount blocks width-wise, h: # blocks height wise
    */
   var getRatio = function(){
-    var h = +$('img').attr("ratio").split(':')[1]
+    var h = +$('img').attr("ratio").split(':')[1],
         w = +$('img').attr("ratio").split(':')[0];
     return {w: w, h: h};
   };
@@ -68,7 +68,7 @@
     return {w: Math.floor(d.w/r.w),
             h: Math.floor(d.h/r.h),
             aw: r.w,
-            ah: r.h
+            ah: r.h,
             t: r.w * r.h
            };
   };
@@ -79,6 +79,54 @@
   };
 })();
 
+(function(){
+  var url, s,
+      idCounter = 0,
+      piece = $("<div/>"),
+      container = $("#puzzle"),
+      imgContainer = container.find("figure"),
+      img = imgContainer.find("img");
+
+  var init = function(){
+    url = C.getUrl();
+    s = C.getSteps();
+    processImg();
+    img.remove();
+  };
+
+  var putImg = function(w,h){
+    piece.clone()
+         .attr("id", idCounter++)
+         .css({
+                width: s.w,
+                height: s.h,
+                position: "absolute",
+                top: h,
+                left: w,
+                backgroundImage: ["url(", url, ")"].join(""),
+                backgroundPosition: [
+                  "-", w, "px ",
+                  "-", h, "px"].join("")
+              }).appendTo(imgContainer);
+  };
+
+  var processImg = function(){
+    var w,h,
+        totalAmountPieces = s.t,
+        w_end = s.w*s.aw,
+        h_end = s.h*s.ah;
+    for (h=0;h<h_end;h+=s.h) {
+      for (w=0;w<w_end;w+=s.w) {
+        putImg(w,h);
+      }
+    }
+  };
+
+  window.V = {
+    init: init
+  };
+})();
+
 $(document).ready(
-  console.log(C.getSteps())
+  V.init()
 );
