@@ -1,3 +1,5 @@
+$(document).ready(
+$('img').load(function(){
 /**
  * IIFE representing the model that will make certain functions public under namespace M
  * @return N/A
@@ -127,6 +129,6 @@
   };
 })();
 
-$(document).ready(
-  V.init()
-);
+V.init();
+
+}));

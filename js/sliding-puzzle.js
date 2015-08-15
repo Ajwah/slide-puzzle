@@ -37,7 +37,7 @@ $( document ).ready (function () {
                   left: left,
                   backgroundImage: ["url(", path, ")"].join(""),
                   backgroundPosition: [
-                  "+", pieceW * a, "px ",
+                  "-", pieceW * a, "px ",
                   "-", pieceH * x, "px"
                   ].join("")
                 }).appendTo(imgContainer);

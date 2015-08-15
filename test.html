@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+     <meta charset="utf-8" />
+     <title>Sliding Puzzle</title>
+  </head>
+<body>
+  <img src="img/2013-tesla-model-s.jpg" height="800" width="1200" ratio="3:4"/>
+  <script src="js/jquery-1.9.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      var img = $("img")[0]; // Get my img elem
+      var pic_real_width = 0, pic_real_height = 0, test=false;
+      $("<img/>") // Make in memory copy of image to avoid css issues
+          .attr("src", $(img).attr("src"))
+          .load(function() {
+              pic_real_width = this.width;   // Note: $(this).width() will not
+              pic_real_height = this.height; // work for in memory images.
+              test = true;
+              console.log(1, pic_real_height, pic_real_width);
+          });
+      while (!test){};
+      console.log(2, pic_real_height, pic_real_width);
+
+      // var img = $('img'),
+      //     _loaded = false;
+      // img.load(function(_l) {
+      //   _l = true;
+      //   console.log('first: ', _l);
+      // }(_loaded));
+      // console.log('second: ', _loaded);
+    });
+  </script>
+</body>
+</html>
