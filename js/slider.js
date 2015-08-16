@@ -149,6 +149,9 @@ $('img').load(function(){ // Wait until image is fully loaded.
     s = C.getSteps();
     _sliceImg();
     img.remove();
+    container.find("#0").remove();
+    positions.shift();
+
     $("#start").on("click", _scrambleSlides);
   };
 

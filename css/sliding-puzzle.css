@@ -1,7 +1,27 @@
+
+#puzzle {
+/*   padding-left: 100px;
+  margin-left: 100px; */
+}
+
 figure {
-  float: left;
+  margin:5px solid black
+  float: left;  
+  position: relative;
+    display: inline-block;
+
+  width: 1200px;
+  height: 800px;
+  margin-top: 30px;
+  margin-left: 150px;
+  margin-bottom: 0px;
 }
 
 #ui{
-  float: right;
+  border:1px solid black
+/*   overflow: hidden; */
+  display: inline-block;
+/*   position: relative; */
+/*   padding-top: 100px;
+  padding-right: 50px; */
 }
