@@ -5,23 +5,22 @@
 }
 
 figure {
-  margin:5px solid black
-  float: left;  
+  border:5px solid black;
+  float: left;
   position: relative;
-    display: inline-block;
+  display: inline-block;
 
   width: 1200px;
   height: 800px;
-  margin-top: 30px;
-  margin-left: 150px;
+  margin-top: 10px;
+  margin-left: 50px;
   margin-bottom: 0px;
+  overflow: hidden;
 }
 
 #ui{
-  border:1px solid black
-/*   overflow: hidden; */
+  border:1px solid black;
   display: inline-block;
-/*   position: relative; */
-/*   padding-top: 100px;
-  padding-right: 50px; */
+  margin-top: 10px;
+  margin-left: 20px;
 }
