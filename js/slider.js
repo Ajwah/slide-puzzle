@@ -1,5 +1,5 @@
 $(document).ready(
-$('img').load(function(){
+$('img').load(function(){ // Wait until image is fully loaded.
 /**
  * IIFE representing the model that will make certain functions public under namespace M
  * @return N/A
@@ -10,8 +10,8 @@ $('img').load(function(){
    * @return {Record of int} w: size width-wise, h: size height-wise
    */
   var getDim = function(){
-    var h = +$('img').height(),
-        w = +$('img').width();
+    var h = document.querySelector('img').naturalHeight, //get actual height regardless of css selector
+        w = document.querySelector('img').naturalWidth;
     return {w: w, h: h};
   };
 
@@ -84,19 +84,13 @@ $('img').load(function(){
 (function(){
   var url, s,
       idCounter = 0,
-      piece = $("<div/>"),
+      piece = $("<div>"),
       container = $("#puzzle"),
       imgContainer = container.find("figure"),
-      img = imgContainer.find("img");
+      img = imgContainer.find("img"),
+      positions = [];
 
-  var init = function(){
-    url = C.getUrl();
-    s = C.getSteps();
-    processImg();
-    img.remove();
-  };
-
-  var putImg = function(w,h){
+  var _putImg = function(w,h){
     piece.clone()
          .attr("id", idCounter++)
          .css({
@@ -112,16 +106,50 @@ $('img').load(function(){
               }).appendTo(imgContainer);
   };
 
-  var processImg = function(){
+  var _sliceImg = function(){
     var w,h,
         totalAmountPieces = s.t,
         w_end = s.w*s.aw,
         h_end = s.h*s.ah;
     for (h=0;h<h_end;h+=s.h) {
       for (w=0;w<w_end;w+=s.w) {
-        putImg(w,h);
+        _putImg(w,h);
+        positions.push({top: h, left: w});
       }
     }
+  };
+
+//Fisher-Yates Shuffle
+//https://en.wikipedia.org/wiki/Fisher–Yates_shuffle
+//http://stackoverflow.com/questions/962802/is-it-correct-to-use-javascript-array-sort-method-for-shuffling
+  var _scrambleSlides = function(){
+    var slides = imgContainer.children();
+
+    var _shuffle = function(arr) {
+      var tmp, i, last = arr.length;
+      if(last) while(--last) {
+        i = Math.floor(Math.random() * (last + 1));
+        tmp = arr[i];
+        arr[i] = arr[last];
+        arr[last] = tmp;
+      }
+      return arr;
+    };
+
+    slides = _shuffle(slides);
+
+    $.each(slides, function (i) {
+        slides.eq(i).css(positions[i]);
+    });
+    slides.appendTo(imgContainer);
+  };
+
+  var init = function(){
+    url = C.getUrl();
+    s = C.getSteps();
+    _sliceImg();
+    img.remove();
+    $("#start").on("click", _scrambleSlides);
   };
 
   window.V = {

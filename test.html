@@ -9,18 +9,6 @@
   <script src="js/jquery-1.9.0.min.js"></script>
   <script>
     $(document).ready(function() {
-      var img = $("img")[0]; // Get my img elem
-      var pic_real_width = 0, pic_real_height = 0, test=false;
-      $("<img/>") // Make in memory copy of image to avoid css issues
-          .attr("src", $(img).attr("src"))
-          .load(function() {
-              pic_real_width = this.width;   // Note: $(this).width() will not
-              pic_real_height = this.height; // work for in memory images.
-              test = true;
-              console.log(1, pic_real_height, pic_real_width);
-          });
-      while (!test){};
-      console.log(2, pic_real_height, pic_real_width);
 
       // var img = $('img'),
       //     _loaded = false;
