@@ -1,6 +1,9 @@
-var img = $('img');
-$(document).ready(
-img.load(function(img){ // Wait until image is fully loaded.
+var img = $('img'); //Global variable intended to be passed through as parameter of anonymous function below.
+
+//Only start processing once the entire DOM, image etc. has loaded
+//which for this implementation is necessary to avoid trying to read
+//properties of image that hasn't been loaded as yet.
+window.onload = function(img){
 /**
  * IIFE representing the model that will make certain functions public under namespace M
  * @return N/A
@@ -304,4 +307,4 @@ img.load(function(img){ // Wait until image is fully loaded.
 
 C.init();
 
-}(img)));
+}(img);
