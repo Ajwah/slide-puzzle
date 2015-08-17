@@ -92,7 +92,7 @@ $('img').load(function(){ // Wait until image is fully loaded.
       container = $("#puzzle"),
       imgContainer = container.find("figure"),
       img = imgContainer.find("img"),
-      positions = []; //Storage of all the various positions of sliders on screen
+      positions = [];
 
   /**
    * Place a rectangular selection portion of original image at designated coordinates w,h
@@ -136,8 +136,6 @@ $('img').load(function(){ // Wait until image is fully loaded.
     }
   };
 
-//Fisher-Yates Shuffle
-
   /**
    * Randomly distribute slides over its designated container.
    * @return N/A
@@ -145,7 +143,6 @@ $('img').load(function(){ // Wait until image is fully loaded.
    */
   var _scrambleSlides = function(){
     var slides = imgContainer.children();
-
     /**
      * Fisher-Yates implementation of a shuffle function that given an
      * array randomly distributes its elements over it.
@@ -175,6 +172,23 @@ $('img').load(function(){ // Wait until image is fully loaded.
     slides.appendTo(imgContainer);
   };
 
+  var _play = function(){
+    var slides = imgContainer.children();
+    slides.draggable({
+        containment: "parent",
+        grid: [s.w,s.h],
+        start: function(e, ui){
+          console.log('Start to drag');
+        },
+        drag: function(e, ui) {
+          console.log('Dragging...');
+        },
+        stop: function(e, ui){
+          console.log('Stop dragging.');
+        }
+      });
+  };
+
   /**
    * Initialize the view
    * @return N/A
@@ -188,6 +202,7 @@ $('img').load(function(){ // Wait until image is fully loaded.
     positions.shift();
 
     $("#start").on("click", _scrambleSlides);
+    _play();
   };
 
   window.V = {
