@@ -81,6 +81,10 @@ $('img').load(function(){ // Wait until image is fully loaded.
   };
 })();
 
+/**
+ * IIFE representing View
+ * @return N/A
+ */
 (function(){
   var url, s,
       idCounter = 0,
@@ -88,8 +92,15 @@ $('img').load(function(){ // Wait until image is fully loaded.
       container = $("#puzzle"),
       imgContainer = container.find("figure"),
       img = imgContainer.find("img"),
-      positions = [];
+      positions = []; //Storage of all the various positions of sliders on screen
 
+  /**
+   * Place a rectangular selection portion of original image at designated coordinates w,h
+   * @param  {int} w width
+   * @param  {int} h height
+   * @return N/A
+   * @effect Manipulation of DOM
+   */
   var _putImg = function(w,h){
     piece.clone()
          .attr("id", idCounter++)
@@ -106,6 +117,12 @@ $('img').load(function(){ // Wait until image is fully loaded.
               }).appendTo(imgContainer);
   };
 
+  /**
+   * Slice up original image into sub selections that can be slided.
+   * @return N/A
+   * @effect Calls on _putImg
+   *         positions updated
+   */
   var _sliceImg = function(){
     var w,h,
         totalAmountPieces = s.t,
@@ -120,11 +137,24 @@ $('img').load(function(){ // Wait until image is fully loaded.
   };
 
 //Fisher-Yates Shuffle
-//https://en.wikipedia.org/wiki/Fisher–Yates_shuffle
-//http://stackoverflow.com/questions/962802/is-it-correct-to-use-javascript-array-sort-method-for-shuffling
+
+  /**
+   * Randomly distribute slides over its designated container.
+   * @return N/A
+   * @effect Manipulation DOM
+   */
   var _scrambleSlides = function(){
     var slides = imgContainer.children();
 
+    /**
+     * Fisher-Yates implementation of a shuffle function that given an
+     * array randomly distributes its elements over it.
+     * Documentation:
+     *     https://en.wikipedia.org/wiki/Fisher–Yates_shuffle
+     *     http://stackoverflow.com/questions/962802/is-it-correct-to-use-javascript-array-sort-method-for-shuffling
+     * @param  {Array} arr
+     * @return {Array}     Input arr with its elements shuffled.
+     */
     var _shuffle = function(arr) {
       var tmp, i, last = arr.length;
       if(last) while(--last) {
@@ -138,12 +168,17 @@ $('img').load(function(){ // Wait until image is fully loaded.
 
     slides = _shuffle(slides);
 
+    //Assign the ordered positions to the shuffled slides.
     $.each(slides, function (i) {
         slides.eq(i).css(positions[i]);
     });
     slides.appendTo(imgContainer);
   };
 
+  /**
+   * Initialize the view
+   * @return N/A
+   */
   var init = function(){
     url = C.getUrl();
     s = C.getSteps();
