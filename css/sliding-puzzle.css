@@ -1,31 +1,3 @@
-/*
-#puzzle {
-/*   padding-left: 100px;
-  margin-left: 100px;
-}
-
-figure {
-  border:5px solid black;
-  float: left;
-  position: relative;
-  display: inline-block;
-
-  width: 1200px;
-  height: 800px;
-  margin-top: 10px;
-  margin-left: 50px;
-  margin-bottom: 0px;
-  overflow: hidden;
-}
-
-#ui{
-  border:1px solid black;
-  display: inline-block;
-  margin-top: 10px;
-  margin-left: 20px;
-}
-*/
-
 #puzzle { width:730px; padding:5px; margin:auto; border:1px solid #aaa; border-radius:5px; background-color:#eee; }
 #puzzle figure { width:510px; height:676px; border:1px solid #aaa; position:relative; float:left; background-color:#fff; }
 #ui { width:200px; padding:10px 0 0 10px; float:left; }

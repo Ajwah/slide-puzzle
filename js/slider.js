@@ -156,6 +156,7 @@ window.onload = function(img){
 
     //Assign the original positions to the shuffled slides.
     V.displaySlides(slides, positions);
+    // slides.appendTo(imgContainer);
   };
 
   /**
@@ -323,12 +324,25 @@ window.onload = function(img){
               adjacentSlides.eq(i).draggable("disable");
             });
 
+            if (_puzzleNotSolved()) {
             //Repeat with updated board.
             _play(_getAdjacentSlides());
+            }
           }
         }
       });
     });
+  };
+
+  var _puzzleNotSolved = function(){
+    var slides = imgContainer.children(),
+        _unSolved = true;
+    $.each(slides, function(i){
+      _unSolved &= (i+1).toString() === slides.eq(i)[0].id;
+      console.log(_unSolved, i, slides.eq(i)[0].id);
+    });
+    console.log(_unSolved);
+    return true; //!_unSolved;
   };
 
   /**
