@@ -64,7 +64,7 @@ window.onload = function(img){
  */
 (function(){
   var positions = [],
-      emptySquare,
+      emptySquare = {},
       container = $("#puzzle"),
       imgContainer = container.find("figure");
 
@@ -232,6 +232,16 @@ window.onload = function(img){
     return adjacentSlides;
   };
 
+  var _getCleanSlides = function(){
+    var slides = imgContainer.children();
+    $.each(slides, function(i){
+      if (slides.eq(i).is(':data(ui-draggable)')) {
+        slides.eq(i).draggable('destroy');
+      }
+    });
+    return slides;
+  };
+
   /**
    * Set up the draggable jquery-ui handler and limit the usage thereof:
    *           -1 to the direct adjacent neighbours of the empty square
@@ -242,8 +252,8 @@ window.onload = function(img){
    * @effect Manipulation of DOM
    */
   var _play = function(adjacentSlides){
-    //Obtain all the slides present on the board.
-    var slides = imgContainer.children();
+    //Obtain all the slides present on the board, cleaned from any jquery-ui.
+    var slides = _getCleanSlides();
     /**
      * Helper function to determine if a particular slide has actually moved from its original place.
      * @param  {Object}  originalPos coordinates according to css notation {top:_,left:_}
@@ -319,14 +329,9 @@ window.onload = function(img){
             emptySquare.left = originalPos.left;
             emptySquare.top = originalPos.top;
 
-            //Disable the draggable for every adjacent slide.
-            $.each(adjacentSlides, function (i) {
-              adjacentSlides.eq(i).draggable("disable");
-            });
-
             if (_puzzleNotSolved()) {
-            //Repeat with updated board.
-            _play(_getAdjacentSlides());
+              //Repeat with updated board.
+              _play(_getAdjacentSlides());
             }
           }
         }
@@ -359,7 +364,8 @@ window.onload = function(img){
     V.init();
     _initialSquare = _popInitialSquare();
     $("#start").on("click", function(){
-      emptySquare = _initialSquare;
+      emptySquare.left = _initialSquare.left;
+      emptySquare.top = _initialSquare.top;
       _scrambleSlides();
       _play(_getAdjacentSlides());
     });
