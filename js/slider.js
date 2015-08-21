@@ -65,6 +65,7 @@ window.onload = function(img){
 (function(){
   var positions = [],
       emptySquare = {},
+      _initialOrderingSlides,
       container = $("#puzzle"),
       imgContainer = container.find("figure");
 
@@ -156,7 +157,18 @@ window.onload = function(img){
 
     //Assign the original positions to the shuffled slides.
     V.displaySlides(slides, positions);
-    // slides.appendTo(imgContainer);
+  };
+
+  /**
+   * Helper function that given two objects e1 and e2,
+   * both that represent the coordinates of a slide,
+   * will evaluate if they equal or not.
+   * @param  {Object} e1 coordinates according to css {top:_, left:_}
+   * @param  {Object} e2 coordinates according to css {top:_, left:_}
+   * @return {Boolean}   Confirm if e1,e2 are same or different.
+   */
+  var _compare = function(e1,e2){
+    return (e1.left === e2.left && e1.top === e2.top);
   };
 
   /**
@@ -203,17 +215,6 @@ window.onload = function(img){
       return {left:left,top:top};
     };
 
-    /**
-     * Helper function to assist in the filtering below that given two objects e1 and e2,
-     * both that represent the coordinates of a slide, will return if they equal or not.
-     * @param  {Object} e1 coordinates according to css {top:_, left:_}
-     * @param  {Object} e2 coordinates according to css {top:_, left:_}
-     * @return {Boolean}   Confirm if e1,e2 are same or different.
-     */
-    var compare = function(e1,e2){
-      return (e1.left === e2.left && e1.top === e2.top);
-    };
-
     // Create an array of 4 elements, prefilled with emptySquare.
     // e.g. say emptySquare is {top:0,left:0} then the array is
     // [{top:0,left:0},{top:0,left:0},...]
@@ -226,12 +227,16 @@ window.onload = function(img){
         adjacentSlides = slides.filter(function(i){
           //For every slide, check if its css position equals to any of the logic neighbours.
           return adjacent.reduce(function(acc,v){
-            return acc || compare(slides.eq(i).position(),v);
+            return acc || _compare(slides.eq(i).position(),v);
           }, false);
         });
     return adjacentSlides;
   };
 
+  /**
+   * Obtain slides from DOM cleaned from jquery draggable.
+   * @return {Jquery object} Contains all the slides on the board.
+   */
   var _getCleanSlides = function(){
     var slides = imgContainer.children();
     $.each(slides, function(i){
@@ -339,15 +344,17 @@ window.onload = function(img){
     });
   };
 
+  /**
+   * Determine if the slides have been reorded according to the original image.
+   * @return {Boolean}
+   */
   var _puzzleNotSolved = function(){
     var slides = imgContainer.children(),
         _unSolved = true;
     $.each(slides, function(i){
-      _unSolved &= (i+1).toString() === slides.eq(i)[0].id;
-      console.log(_unSolved, i, slides.eq(i)[0].id);
+      _unSolved &= _compare(positions[i], slides.eq(i).position());
     });
-    console.log(_unSolved);
-    return true; //!_unSolved;
+    return !_unSolved;
   };
 
   /**
@@ -363,6 +370,7 @@ window.onload = function(img){
     var _initialSquare;
     V.init();
     _initialSquare = _popInitialSquare();
+    _initialOrderingSlides = imgContainer.children();
     $("#start").on("click", function(){
       emptySquare.left = _initialSquare.left;
       emptySquare.top = _initialSquare.top;
