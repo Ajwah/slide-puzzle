@@ -1,5 +1,4 @@
 'use strict';
-var img = $('img'); //Global variable intended to be passed through as parameter of anonymous function below.
 
 //Only start processing once the entire DOM, image etc. has loaded
 //which for this implementation is necessary to avoid trying to read
@@ -10,6 +9,7 @@ window.onload = function(img) {
    *
    */
   (function() {
+    var _img = $('img');
     var _dim = {};   //Storage to remember dim and ratio of img even after
     var _ratio = {}; //the img has been deleted from DOM.
     /**
@@ -21,8 +21,8 @@ window.onload = function(img) {
       var h;
       var w;
       if (Object.keys(_dim).length === 0) {
-        h = img.prop('naturalHeight'); //get actual height regardless of css selector
-        w = img.prop('naturalWidth');
+        h = _img.prop('naturalHeight'); //get actual height regardless of css selector
+        w = _img.prop('naturalWidth');
         _dim.w = w;
         _dim.h = h;
       }
@@ -39,8 +39,8 @@ window.onload = function(img) {
       var h;
       var w;
       if (Object.keys(_ratio).length === 0) {
-        h = +img.attr('ratio').split(':')[1];
-        w = +img.attr('ratio').split(':')[0];
+        h = +_img.attr('ratio').split(':')[1];
+        w = +_img.attr('ratio').split(':')[0];
         _ratio.h = h;
         _ratio.w = w;
       }
@@ -53,7 +53,7 @@ window.onload = function(img) {
      * @return {String} path of image file
      */
     var getUrl = function() {
-      return img.attr('src');
+      return _img.attr('src');
     };
 
     window.M = {
@@ -494,8 +494,9 @@ window.onload = function(img) {
      *
      */
     var init = function() {
+      var _img = $('img');
       _sliceImg();
-      img.remove();
+      _img.remove();
     };
 
     window.V = {
@@ -508,4 +509,4 @@ window.onload = function(img) {
 
   C.init();
 
-}(img);
+}();
