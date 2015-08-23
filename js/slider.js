@@ -156,6 +156,7 @@ window.onload = function(img) {
      * @type {Jquery}
      * @private
      */
+/*@TODO: Move to V*/
     var slidingBoard = container.find('figure');
 
     /**
@@ -166,6 +167,7 @@ window.onload = function(img) {
      * @public
      */
     var getSlidingBoard = function() {
+/*@TODO: Move to V*/
       return slidingBoard;
     };
 
@@ -229,6 +231,7 @@ window.onload = function(img) {
      */
     var _popInitialSquare = function() {
       var _initialSquare;
+/*@TODO: container doesnt make sense*/
       V.removeInitialSlide(container);
       _initialSquare = positions.shift();
       return _initialSquare;
@@ -269,6 +272,8 @@ window.onload = function(img) {
        * @memberOf  _scrambleSlides
        */
       var _shuffle = function(arr) {
+/*@TODO: Move to helper.js*/
+
         var tmp;
         var i;
         var last = arr.length;
@@ -297,6 +302,7 @@ window.onload = function(img) {
      * @private
      */
     var _compare = function(e1, e2) {
+/*@TODO: Move to helper.js*/
       return (e1.left === e2.left && e1.top === e2.top);
     };
 
@@ -352,6 +358,7 @@ window.onload = function(img) {
        * @private
        */
       var _getAdjacentSquare = function(e, i) {
+/*@TODO: Move to helper.js*/
         var sign = (i < 2) ? 1 : -1; //0,1 is always a positive square distance whereas 2,3 are negative square distance
         //only 0 and 2 maintain that square distance horizontally
         var left = (i % 2 === 0) ? e.left + (sign * unitBlock.w) : e.left;
@@ -363,6 +370,7 @@ window.onload = function(img) {
       // Create an array of 4 elements, prefilled with emptySquare.
       // Example: if emptySquare is {top:0,left:0} then the array will be
       // [{top:0,left:0},{top:0,left:0},...]
+/*@TODO: Move to helper.js*/
       var emptySquares = Array.apply(null, new Array(4))
                               .map(Object.prototype.valueOf,emptySquare);
       //map the above initialized array to a new array -adjacent- containing all the
@@ -385,6 +393,7 @@ window.onload = function(img) {
      * @private
      */
     var _getCleanSlides = function() {
+/*@TODO: Move to V*/
       var slides = slidingBoard.children();
       $.each(slides, function(i) {
         if (slides.eq(i).is(':data(ui-draggable)')) {
@@ -416,6 +425,8 @@ window.onload = function(img) {
        * @private
        */
       var _isSlided = function(originalPos, currentPos) {
+/*@TODO: Move to helper.js*/
+
         return !_compare(originalPos, currentPos);
       };
       //For debugging purposes to be removed soon.
