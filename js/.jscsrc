@@ -1,4 +1,4 @@
 {
-    "preset": "google",
+    "preset": "google.json",
     "maxErrors": 10
 }

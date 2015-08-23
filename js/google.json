@@ -74,9 +74,13 @@
     "requireDotNotation": true,
     "requireSemicolons": true,
     "validateParameterSeparator": ", ",
-
     "jsDoc": {
-        "checkAnnotations": "closurecompiler",
+        "checkAnnotations": {
+            "preset": "closurecompiler",
+            "extra": {
+                "alias": true
+            }
+        },
         "checkParamNames": true,
         "requireParamTypes": true,
         "checkRedundantParams": true,

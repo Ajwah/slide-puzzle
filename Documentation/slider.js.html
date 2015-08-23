@@ -1,4 +1,32 @@
-'use strict';
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: slider.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: slider.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
 /**
  * famously known framework jQuery
  *
@@ -258,13 +286,13 @@ window.onload = function(img) {
        * Fisher-Yates implementation of a shuffle function that given an
        * array randomly distributes its elements over it.
        * Documentation:
-       * <ul>
-       *     <li>{@link https://en.wikipedia.org/wiki/Fisher–Yates_shuffle Wikipedia}
-       *     <li>{@link http://stackoverflow.com/questions/962802/is-it-correct-to-use-javascript-array-sort-method-for-shuffling Stackoverflow}
-       *</ul>
+       * &lt;ul>
+       *     &lt;li>{@link https://en.wikipedia.org/wiki/Fisher–Yates_shuffle Wikipedia}
+       *     &lt;li>{@link http://stackoverflow.com/questions/962802/is-it-correct-to-use-javascript-array-sort-method-for-shuffling Stackoverflow}
+       *&lt;/ul>
        *
-       * @param  {Array.<Jquery>} arr
-       * @return {Array.<Jquery>}     Input arr with its elements shuffled.
+       * @param  {Array.&lt;Jquery>} arr
+       * @return {Array.&lt;Jquery>}     Input arr with its elements shuffled.
        * @private
        * @memberOf  _scrambleSlides
        */
@@ -297,18 +325,18 @@ window.onload = function(img) {
      * @private
      */
     var _compare = function(e1, e2) {
-      return (e1.left === e2.left && e1.top === e2.top);
+      return (e1.left === e2.left &amp;&amp; e1.top === e2.top);
     };
 
     /**
      * obtains slides whose sides are directly adjacent to empty square
      * These adjacent slides can differ in quantity according to position to empty square
      * in following ways:
-     * <ul>
-     * <li> 2 if empty square is cornered
-     * <li> 3 if empty square is touching border of sliding board
-     * <li> 4 if empty square in any other place in sliding board
-     * </ul>
+     * &lt;ul>
+     * &lt;li> 2 if empty square is cornered
+     * &lt;li> 3 if empty square is touching border of sliding board
+     * &lt;li> 4 if empty square in any other place in sliding board
+     * &lt;/ul>
      *
      * @return {Jquery}        adjacent slides relative to the empty square.
      * @private
@@ -320,30 +348,30 @@ window.onload = function(img) {
       /**
        * obtain the css coordinates of any adjacent neighbour i to empty square e
        * This helper function is to be used as a higher order function in a mapping below.
-       * <b>NOTE: </b>
-       * <ul>
-       * <li> The function is only intended to work for i being 0, 1, 2 or 3.
-       * <li> Regardless of the actual position of the empty square(corner, side board, middle),
+       * &lt;b>NOTE: &lt;/b>
+       * &lt;ul>
+       * &lt;li> The function is only intended to work for i being 0, 1, 2 or 3.
+       * &lt;li> Regardless of the actual position of the empty square(corner, side board, middle),
        * this function will always return a result for any of the four requested neighbours i.
        * Further discrimination is required to filter out coordinates out of board.
-       * </ul>
-       * <p>
-       * <p><b>Implementation Details</b></p>
+       * &lt;/ul>
+       * &lt;p>
+       * &lt;p>&lt;b>Implementation Details&lt;/b>&lt;/p>
        * Following diagram depicts all the possible neighours -i- any empty square on the
        * board theoretically speaking could have:
-       *                                    <p>. 3 .
-       *                                    <p>2 # 0
-       *                                    <p>. 1 .
-       *                                    <ul>
-       *                                    <li> # represents the empty square
-       *                                    <li> 0,1,2,3 represent adjacent neighbours
-       *                                    <li> . represents non-adjacent neighbours
-       *                                    </ul>
+       *                                    &lt;p>. 3 .
+       *                                    &lt;p>2 # 0
+       *                                    &lt;p>. 1 .
+       *                                    &lt;ul>
+       *                                    &lt;li> # represents the empty square
+       *                                    &lt;li> 0,1,2,3 represent adjacent neighbours
+       *                                    &lt;li> . represents non-adjacent neighbours
+       *                                    &lt;/ul>
        * According to this depiction, following observations can be made to simplify implementation:
-       * <ul>
-       * <li>Neighbour 0,1 require 1 positive square distance away from #, in dimensions x and y respectively.
-       * <li>Neighbour 2,3 require 1 negative square distance away from #, in dimensions x and y respectively.
-       * </ul>
+       * &lt;ul>
+       * &lt;li>Neighbour 0,1 require 1 positive square distance away from #, in dimensions x and y respectively.
+       * &lt;li>Neighbour 2,3 require 1 negative square distance away from #, in dimensions x and y respectively.
+       * &lt;/ul>
        * The clockwise Numbering of visual depiction corresponds to various neighbours i that are intended to be retrieved.
        *
        * @param  {cssCoord} e representing the empty square
@@ -352,7 +380,7 @@ window.onload = function(img) {
        * @private
        */
       var _getAdjacentSquare = function(e, i) {
-        var sign = (i < 2) ? 1 : -1; //0,1 is always a positive square distance whereas 2,3 are negative square distance
+        var sign = (i &lt; 2) ? 1 : -1; //0,1 is always a positive square distance whereas 2,3 are negative square distance
         //only 0 and 2 maintain that square distance horizontally
         var left = (i % 2 === 0) ? e.left + (sign * unitBlock.w) : e.left;
         //only 1 and 3 maintain that square distance vertically
@@ -453,7 +481,7 @@ window.onload = function(img) {
         //For each neighbour 0,1,2,3 a separate containment is defined that reflects the depiction above
         //so that the domain of the draggable is limited to the boxed area.
         //
-        //<b>Important Bug Note</b>: Containment demands left to right, top to bottom orientation of the
+        //&lt;b>Important Bug Note&lt;/b>: Containment demands left to right, top to bottom orientation of the
         //                           coordinates, from smaller to bigger or else the draggable will not work
         //                           correctly. This orientation is assured below as follows:
         var containment = [Math.min.apply(null, x), Math.min.apply(null, y),
@@ -503,21 +531,21 @@ window.onload = function(img) {
       var slides = slidingBoard.children();
       var _unSolved = true;
       $.each(slides, function(i) {
-        _unSolved &= _compare(positions[i], slides.eq(i).position());
+        _unSolved &amp;= _compare(positions[i], slides.eq(i).position());
       });
       return !_unSolved;
     };
 
     /**
      * initializes the puzzle game
-     * <p> this requires: </p>
-     * <ol>
-     *   <li> Slice up the image according to ratio
-     *   <li> Remove initial slide to enable sliding
-     *   <li> Scramble the slides when start is pressed
-     *   <li> Start the timer
-     *   <li> Allow to start playing
-     * </ol>
+     * &lt;p> this requires: &lt;/p>
+     * &lt;ol>
+     *   &lt;li> Slice up the image according to ratio
+     *   &lt;li> Remove initial slide to enable sliding
+     *   &lt;li> Scramble the slides when start is pressed
+     *   &lt;li> Start the timer
+     *   &lt;li> Allow to start playing
+     * &lt;/ol>
      *
      * @alias C.init
      * @public
@@ -569,7 +597,7 @@ window.onload = function(img) {
      * @type {Jquery}
      * @private
      */
-    var _piece = $('<div>');
+    var _piece = $('&lt;div>');
 
     /**
      * reference to html representing sliding board
@@ -616,8 +644,8 @@ window.onload = function(img) {
       var wEnd = _unitBlock.w * _unitBlock.aw;
       var hEnd = _unitBlock.h * _unitBlock.ah;
 
-      for (h = 0; h < hEnd; h += _unitBlock.h) {
-        for (w = 0; w < wEnd; w += _unitBlock.w) {
+      for (h = 0; h &lt; hEnd; h += _unitBlock.h) {
+        for (w = 0; w &lt; wEnd; w += _unitBlock.w) {
           _putImg(id,w,h);
           C.savePos(w,h);
           id++;
@@ -629,8 +657,8 @@ window.onload = function(img) {
     /**
      * displays slides according to positions
      *
-     * @param  {Array.<Jquery>} slides    Various slides from DOM tree that previously have been shuffled.
-     * @param  {Array.<cssCoord>} positions Initial positions of the slides at start of game from top left to bottom right.
+     * @param  {Array.&lt;Jquery>} slides    Various slides from DOM tree that previously have been shuffled.
+     * @param  {Array.&lt;cssCoord>} positions Initial positions of the slides at start of game from top left to bottom right.
      * @alias V.displaySlides
      * @public
      */
@@ -686,3 +714,26 @@ window.onload = function(img) {
   C.init();
 
 }();
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="C.html">C</a></li><li><a href="M.html">M</a></li><li><a href="V.html">V</a></li></ul><h3><a href="global.html">Global</a></h3>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Sat Aug 22 2015 23:37:56 GMT-0400 (EDT)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
