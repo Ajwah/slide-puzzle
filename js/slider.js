@@ -8,6 +8,7 @@
 
 /**
  * namespace for IIFE that represents Model
+ *
  * @type {Object}
  * @namespace M
  */
@@ -15,6 +16,7 @@ var M = {};
 
 /**
  * namespace for IIFE that represents View
+ *
  * @type {Object}
  * @namespace V
  */
@@ -22,13 +24,13 @@ var V = {};
 
 /**
  * namespace for IIFE that represents Controller
+ *
  * @type {Object}
  * @namespace C
  */
 var C = {};
 
-//onload will only process once all images have been loaded.
-//This prevents futile access to a non-existent DOM element by code below.
+//onload will only process once all images have loaded, preventing futile access to a non-existent DOM element by code below.
 window.onload = function(img) {
   /**
    * IIFE representing a closure for Model. Functions public under namespace M.
@@ -143,35 +145,6 @@ window.onload = function(img) {
     var emptySquare = {};
 
     /**
-     * reference to interaction board on screen
-     *
-     * @type {Jquery}
-     * @private
-     */
-    var container = $('#puzzle');
-
-    /**
-     * reference to the sliding board on screen
-     *
-     * @type {Jquery}
-     * @private
-     */
-/*@TODO: Move to V*/
-    var slidingBoard = container.find('figure');
-
-    /**
-     * returns reference to the sliding board on screen
-     *
-     * @return {Jquery}
-     * @alias C.getSlidingBoard
-     * @public
-     */
-    var getSlidingBoard = function() {
-/*@TODO: Move to V*/
-      return slidingBoard;
-    };
-
-    /**
      * obtains url from img file
      *
      * @return {String} path to img file
@@ -231,8 +204,7 @@ window.onload = function(img) {
      */
     var _popInitialSquare = function() {
       var _initialSquare;
-/*@TODO: container doesnt make sense*/
-      V.removeInitialSlide(container);
+      V.removeInitialSlide();
       _initialSquare = positions.shift();
       return _initialSquare;
     };
@@ -256,54 +228,9 @@ window.onload = function(img) {
      * @private
      */
     var _scrambleSlides = function() {
-      var slides = slidingBoard.children();
-      /**
-       * Fisher-Yates implementation of a shuffle function that given an
-       * array randomly distributes its elements over it.
-       * Documentation:
-       * <ul>
-       *     <li>{@link https://en.wikipedia.org/wiki/Fisher–Yates_shuffle Wikipedia}
-       *     <li>{@link http://stackoverflow.com/questions/962802/is-it-correct-to-use-javascript-array-sort-method-for-shuffling Stackoverflow}
-       *</ul>
-       *
-       * @param  {Array.<Jquery>} arr
-       * @return {Array.<Jquery>}     Input arr with its elements shuffled.
-       * @private
-       * @memberOf  _scrambleSlides
-       */
-      var _shuffle = function(arr) {
-/*@TODO: Move to helper.js*/
-
-        var tmp;
-        var i;
-        var last = arr.length;
-        if (last) {
-          while (--last) {
-            i = Math.floor(Math.random() * (last + 1));
-            tmp = arr[i];
-            arr[i] = arr[last];
-            arr[last] = tmp;
-          }
-        }
-        return arr;
-      };
-
+      var slides = V.getSlides();
       //Assign the original positions to the shuffled slides.
-      V.displaySlides(_shuffle(slides), positions);
-    };
-
-    /**
-     * compares if two given css-coordinates match
-     * helper function
-     *
-     * @param  {cssCoord} e1
-     * @param  {cssCoord} e2
-     * @return {Boolean}   confirm if e1 and e2 match
-     * @private
-     */
-    var _compare = function(e1, e2) {
-/*@TODO: Move to helper.js*/
-      return (e1.left === e2.left && e1.top === e2.top);
+      V.displaySlides(CHelper.shuffle(slides), positions);
     };
 
     /**
@@ -320,11 +247,11 @@ window.onload = function(img) {
      * @private
      */
     var _getAdjacentSlides = function() {
-      var slides = slidingBoard.children();
+      var slides = V.getSlides();
       var unitBlock = getUnitBlockInfo();
 
       /**
-       * obtain the css coordinates of any adjacent neighbour i to empty square e
+       * calculate the css coordinates of any adjacent neighbour i to empty square e
        * This helper function is to be used as a higher order function in a mapping below.
        * <b>NOTE: </b>
        * <ul>
@@ -357,8 +284,7 @@ window.onload = function(img) {
        * @return {cssCoord}
        * @private
        */
-      var _getAdjacentSquare = function(e, i) {
-/*@TODO: Move to helper.js*/
+      var _calculateAdjacentSquare = function(e, i) {
         var sign = (i < 2) ? 1 : -1; //0,1 is always a positive square distance whereas 2,3 are negative square distance
         //only 0 and 2 maintain that square distance horizontally
         var left = (i % 2 === 0) ? e.left + (sign * unitBlock.w) : e.left;
@@ -368,39 +294,19 @@ window.onload = function(img) {
       };
 
       // Create an array of 4 elements, prefilled with emptySquare.
-      // Example: if emptySquare is {top:0,left:0} then the array will be
-      // [{top:0,left:0},{top:0,left:0},...]
-/*@TODO: Move to helper.js*/
-      var emptySquares = Array.apply(null, new Array(4))
-                              .map(Object.prototype.valueOf,emptySquare);
+      var emptySquares = CHelper.prefillArrayWithObject(4, emptySquare);
+
       //map the above initialized array to a new array -adjacent- containing all the
       //logic neighbours relative to the empty square, including out of bound ones.
-      var adjacent = emptySquares.map(_getAdjacentSquare);
+      var adjacent = emptySquares.map(_calculateAdjacentSquare);
       //Filter out from those logic neighbours only those that are present on board.
       var adjacentSlides = slides.filter(function(i) {
-            //For every slide, check if its css position equals to any of the logic neighbours.
-            return adjacent.reduce(function(acc, v) {
-              return acc || _compare(slides.eq(i).position(),v);
-            }, false);
-          });
-      return adjacentSlides;
-    };
-
-    /**
-     * obtains slides from DOM, cleaned from Jquery draggable.
-     *
-     * @return {Jquery} Contains all the slides on the board.
-     * @private
-     */
-    var _getCleanSlides = function() {
-/*@TODO: Move to V*/
-      var slides = slidingBoard.children();
-      $.each(slides, function(i) {
-        if (slides.eq(i).is(':data(ui-draggable)')) {
-          slides.eq(i).draggable('destroy');
-        }
+        //For every slide, check if its css position equals to any of the logic neighbours.
+        return adjacent.reduce(function(acc, v) {
+          return acc || CHelper.compare(slides.eq(i).position(),v);
+        }, false);
       });
-      return slides;
+      return adjacentSlides;
     };
 
     /**
@@ -414,30 +320,17 @@ window.onload = function(img) {
      */
     var _play = function(adjacentSlides) {
       //Obtain all the slides present on the board, cleaned from any Jquery-ui.
-      var slides = _getCleanSlides();
-      /**
-       * determine if a slide has moved from original place.
-       * helper function
-       *
-       * @param  {cssCoord}  originalPos
-       * @param  {cssCoord}  currentPos
-       * @return {Boolean}             evaluate if originalPos is different from currentPos
-       * @private
-       */
-      var _isSlided = function(originalPos, currentPos) {
-/*@TODO: Move to helper.js*/
+      var slides = V.getCleanSlides();
 
-        return !_compare(originalPos, currentPos);
-      };
       //For debugging purposes to be removed soon.
-      slides.css('border', '0px solid red');
+      // slides.css('border', '0px solid red');
 
       //Set up draggable event handler for each of the adjacent slides.
       $.each(adjacentSlides, function(i) {
         var that = adjacentSlides.eq(i);
         var pos = that.position();
         //Determine offset of css position of slides relative to the window which is the relative
-        //position of the image container to the window.
+        //position of the image _container to the window.
         var offset = {left: that.parent().offset().left,
                       top: that.parent().offset().top};
         var x = [emptySquare.left + offset.left + 1,pos.left + offset.left + 1];
@@ -470,12 +363,11 @@ window.onload = function(img) {
         var containment = [Math.min.apply(null, x), Math.min.apply(null, y),
                            Math.max.apply(null, x), Math.max.apply(null, y)];
         //For debugging purposes, to be removed soon.
-        that.css('border', '5px solid red');
+        // that.css('border', '5px solid red');
 
         //For each neighbour define a draggable with its personalized containment.
         that.draggable({
           distance: 5,
-          disabled: false,
           //extend Jquery-ui draggable API specification with extra member.
           originalPos: {left: pos.left, top: pos.top},
           //define containment area.
@@ -484,7 +376,7 @@ window.onload = function(img) {
             var originalPos = that.draggable('option', 'originalPos');
             var currentPos = ui.position;
             //At the slightest movement, complete the movement so as to fill the empty square.
-            if (_isSlided(originalPos, currentPos)) {
+            if (CHelper.isSlided(originalPos, currentPos)) {
               //Update original position of the slide.
               that.draggable('option', 'originalPos', {left: currentPos.left,
                                                        top: currentPos.top});
@@ -511,12 +403,12 @@ window.onload = function(img) {
      * @private
      */
     var _puzzleNotSolved = function() {
-      var slides = slidingBoard.children();
-      var _unSolved = true;
+      var slides = V.getSlides();
+      var _solved = true;
       $.each(slides, function(i) {
-        _unSolved &= _compare(positions[i], slides.eq(i).position());
+        _solved &= CHelper.compare(positions[i], slides.eq(i).position());
       });
-      return !_unSolved;
+      return !_solved;
     };
 
     /**
@@ -549,8 +441,7 @@ window.onload = function(img) {
       init: init,
       getUrl: getUrl,
       getUnitBlockInfo: getUnitBlockInfo,
-      savePos: savePos,
-      getSlidingBoard: getSlidingBoard
+      savePos: savePos
     };
   })();
 
@@ -583,12 +474,48 @@ window.onload = function(img) {
     var _piece = $('<div>');
 
     /**
-     * reference to html representing sliding board
+     * reference to interaction board on screen
      *
      * @type {Jquery}
      * @private
      */
-    var _slidingBoard = C.getSlidingBoard();
+    var _container = $('#puzzle');
+
+    /**
+     * reference to the sliding board on screen
+     *
+     * @type {Jquery}
+     * @private
+     */
+    var _slidingBoard = _container.find('figure');
+
+    /**
+     * returns reference to the sliding board on screen
+     *
+     * @return {Jquery}
+     * @alias V.getSlides
+     * @public
+     */
+    var getSlides = function() {
+      return _slidingBoard.children();
+    };
+
+    /**
+     * provides slides from DOM, cleaned from Jquery draggable.
+     *
+     * @return {Jquery} Contains all the slides on the board.
+     * @alias V.getCleanSlides
+     * @public
+     */
+    var getCleanSlides = function() {
+      var slides = getSlides();
+      $.each(slides, function(i) {
+        if (slides.eq(i).is(':data(ui-draggable)')) {
+          slides.eq(i).draggable('destroy');
+        }
+      });
+      return slides;
+    };
 
     /**
      * extracts a rectangular selection from original image and places it at coordinates l, t
@@ -666,12 +593,11 @@ window.onload = function(img) {
     /**
      * removes an initial slide from the img so as to make sliding plausible.
      *
-     * @param  {Jquery} container
      * @alias V.removeInitialSlide
      * @public
      */
-    var removeInitialSlide = function(container) {
-      container.find('#0').remove();
+    var removeInitialSlide = function() {
+      _container.find('#0').remove();
     };
 
     /**
@@ -688,6 +614,8 @@ window.onload = function(img) {
 
     window.V = {
       init: init,
+      getSlides: getSlides,
+      getCleanSlides: getCleanSlides,
       displaySlides: displaySlides,
       putSlide: putSlide,
       removeInitialSlide: removeInitialSlide
@@ -695,5 +623,4 @@ window.onload = function(img) {
   })();
 
   C.init();
-
 }();
