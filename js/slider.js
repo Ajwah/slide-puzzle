@@ -287,10 +287,10 @@ window.onload = function(img) {
       var _calculateAdjacentSquare = function(e, i) {
         var sign = (i < 2) ? 1 : -1; //0,1 is always a positive square distance whereas 2,3 are negative square distance
         //only 0 and 2 maintain that square distance horizontally
-        var left = (i % 2 === 0) ? e.left + (sign * unitBlock.w) : e.left;
+        var left = (i % 2 === 0) ? e.left + sign * (unitBlock.w + 5): e.left;
         //only 1 and 3 maintain that square distance vertically
-        var top = (i % 2 !== 0) ? e.top + (sign * unitBlock.h) : e.top;
-        return {left: left,top: top};
+        var top = (i % 2 !== 0) ? e.top + sign * (unitBlock.h + 5): e.top;
+        return {left: left, top: top};
       };
 
       // Create an array of 4 elements, prefilled with emptySquare.
@@ -307,6 +307,16 @@ window.onload = function(img) {
         }, false);
       });
       return adjacentSlides;
+    };
+
+    var direction = function(xs, ys) {
+      var xAxis = ['left', '', 'right'];
+      var yAxis = ['up', '', 'down'];
+      var dir = function(a, b) {
+        var r = a - b;
+        return (r < 0) ? 0 : (r > 0) ? 2 : 1
+      };
+      return xAxis[dir(xs[0], xs[1])] + yAxis[dir(ys[0], ys[1])];
     };
 
     /**
@@ -381,15 +391,23 @@ window.onload = function(img) {
               that.draggable('option', 'originalPos', {left: currentPos.left,
                                                        top: currentPos.top});
               //Put slide on place of empty square.
-              V.putSlide(that, {left: emptySquare.left, top: emptySquare.top});
-              //Update position of empty square.
-              emptySquare.left = originalPos.left;
-              emptySquare.top = originalPos.top;
+              V.putSlide(that, {left: emptySquare.left, top: emptySquare.top}, function(){});
+              that.effect('shake', {
+                direction: direction(x,y),
+                distance: 5,
+                times: 7}, 50, function(){
+                  console.log("Callback ");
+                  //Update position of empty square.
+                  emptySquare.left = originalPos.left;
+                  emptySquare.top = originalPos.top;
 
-              if (_puzzleNotSolved()) {
-                //Repeat with updated board.
-                _play(_getAdjacentSlides());
-              }
+                  if (_puzzleNotSolved()) {
+                    //Repeat with updated board.
+                    _play(_getAdjacentSlides());
+                  } else {
+                    _puzzleEnded();
+                  }
+                });
             }
           }
         });
@@ -409,6 +427,11 @@ window.onload = function(img) {
         _solved &= CHelper.compare(positions[i], slides.eq(i).position());
       });
       return !_solved;
+    };
+
+    var _puzzleEnded = function() {
+      V.getCleanSlides();
+      V.puzzleEnded();
     };
 
     /**
@@ -489,6 +512,8 @@ window.onload = function(img) {
      */
     var _slidingBoard = _container.find('figure');
 
+    var _initialSlide;
+
     /**
      * returns reference to the sliding board on screen
      *
@@ -532,8 +557,8 @@ window.onload = function(img) {
                   width: _unitBlock.w,
                   height: _unitBlock.h,
                   position: 'absolute',
-                  top: t,
-                  left: l,
+                  top: t, //+ 5 * (Math.floor(id / _unitBlock.aw) + 1),
+                  left: l, //+ 5 * (id % _unitBlock.aw) + 5,
                   backgroundImage: ['url(', _url, ')'].join(''),
                   backgroundPosition: [
                     '-', l, 'px ',
@@ -557,7 +582,8 @@ window.onload = function(img) {
       for (h = 0; h < hEnd; h += _unitBlock.h) {
         for (w = 0; w < wEnd; w += _unitBlock.w) {
           _putImg(id,w,h);
-          C.savePos(w,h);
+          C.savePos(w+ 5*(id%_unitBlock.aw) + 5,h+ 5*(Math.floor(id/_unitBlock.aw)+1));
+          console.log(id, (id%_unitBlock.aw), Math.floor(id/_unitBlock.aw)+1);
           id++;
         }
       }
@@ -586,8 +612,10 @@ window.onload = function(img) {
      * @alias V.putSlide
      * @public
      */
-    var putSlide = function(slide, position) {
+    var putSlide = function(slide, position, cb) {
       slide.css(position);
+           // .effect("shake", cb);
+
     };
 
     /**
@@ -597,7 +625,13 @@ window.onload = function(img) {
      * @public
      */
     var removeInitialSlide = function() {
+      _initialSlide = _container.find('#0');
       _container.find('#0').remove();
+    };
+
+    var puzzleEnded = function() {
+      $("#ui").append("<div class='completed'><p>COMPLETED</p></div>");
+      _slidingBoard.append(_initialSlide);
     };
 
     /**
@@ -618,7 +652,8 @@ window.onload = function(img) {
       getCleanSlides: getCleanSlides,
       displaySlides: displaySlides,
       putSlide: putSlide,
-      removeInitialSlide: removeInitialSlide
+      removeInitialSlide: removeInitialSlide,
+      puzzleEnded: puzzleEnded
     };
   })();
 
