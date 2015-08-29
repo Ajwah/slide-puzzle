@@ -1,20 +1,74 @@
-#puzzle { width:730px; padding:5px; margin:auto; margin-top: 50px; border:1px solid #aaa; border-radius:5px; background-color:#eee; }
-#puzzle figure { width:510px; height:676px; border:1px solid #aaa; position:relative; float:left; background-color:#fff; }
-#ui { width:200px; padding:10px 0 0 10px; float:left; }
-#ui button { margin-bottom:2em; }
-#ui p { font-size:1.7em; }
-#start { width:204px; height:50px; font-size:1.75em; }
-.ui-draggable {
-  -webkit-animation: mymove 1s infinite; /* Chrome, Safari, Opera */
-  animation: mymove 1s infinite;
+html {
+    background: url(../img/backgrounds/sky-sunny-clouds-cloudy.jpg) no-repeat center fixed;
+    -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;
+}
+
+/* Force outer div to expand according to growing size of inner div*/
+.clearfix {
+    position: relative;
+
+    overflow: hidden;
+
+    background: #f7f7f7 url(../img/backgrounds/bg.png) repeat center top;
+}
+
+#puzzle {
+    position: relative;
+    z-index: 10;
+
+    width: 730px;
+    margin: auto;
+    margin-top: 120px;
+    padding: 5px;
+
+    border: 1px solid #aaa;
+    border-radius: 5px;
+}
+
+#puzzle figure {
+    position: relative;
+
+    float: left;
+
+    width: 510px;
+    height: 676px;
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+    border: 1px solid #aaa;
+}
+
+#ui {
+    position: relative;
+
+    float: left;
+
+    width: 200px;
+    padding: 10px 0 0 10px;
+}
+
+.ui-draggable
+{
+    -webkit-animation: mymove 1s infinite; /* Chrome, Safari, Opera */
+            animation: mymove 1s infinite;
 }
 
 /* Chrome, Safari, Opera */
 @-webkit-keyframes mymove {
-    25% {box-shadow: 10px 20px 30px black;}
+    25%
+    {
+        box-shadow: 10px 20px 30px black;
+    }
 }
 
 /* Standard syntax */
 @keyframes mymove {
-    25% {box-shadow: 10px 20px 30px black;}
+    25%
+    {
+        box-shadow: 10px 20px 30px black;
+    }
 }
