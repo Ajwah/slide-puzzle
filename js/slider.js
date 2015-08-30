@@ -453,6 +453,7 @@ window.onload = function(img) {
       V.init();
       _initialSquare = _popInitialSquare();
       $('#start').on('click', function() {
+        V.expandToGrooves();
         emptySquare.left = _initialSquare.left;
         emptySquare.top = _initialSquare.top;
         _scrambleSlides();
@@ -472,6 +473,8 @@ window.onload = function(img) {
    * IIFE representing a closure for View.
    */
   (function() {
+    var grooves = {w: 5, h: 5};
+
     /**
      * storage for url of image
      *
@@ -557,8 +560,8 @@ window.onload = function(img) {
                   width: _unitBlock.w,
                   height: _unitBlock.h,
                   position: 'absolute',
-                  top: t, //+ 5 * (Math.floor(id / _unitBlock.aw) + 1),
-                  left: l, //+ 5 * (id % _unitBlock.aw) + 5,
+                  top: t,
+                  left: l,
                   backgroundImage: ['url(', _url, ')'].join(''),
                   backgroundPosition: [
                     '-', l, 'px ',
@@ -582,7 +585,8 @@ window.onload = function(img) {
       for (h = 0; h < hEnd; h += _unitBlock.h) {
         for (w = 0; w < wEnd; w += _unitBlock.w) {
           _putImg(id,w,h);
-          C.savePos(w+ 5*(id%_unitBlock.aw) + 5,h+ 5*(Math.floor(id/_unitBlock.aw)+1));
+          C.savePos(w + grooves.w * (id % _unitBlock.aw),
+                    h + grooves.h * (Math.floor(id / _unitBlock.aw)));
           console.log(id, (id%_unitBlock.aw), Math.floor(id/_unitBlock.aw)+1);
           id++;
         }
@@ -614,8 +618,23 @@ window.onload = function(img) {
      */
     var putSlide = function(slide, position, cb) {
       slide.css(position);
-           // .effect("shake", cb);
+    };
 
+    var expandToGrooves = function() {
+      var originalDim = {
+        width: _unitBlock.w * _unitBlock.aw,
+        height: _unitBlock.h * _unitBlock.ah
+      };
+
+      var amountGrooves = {
+        width: _unitBlock.aw - 1,
+        height: _unitBlock.ah - 1
+      };
+
+      _slidingBoard.css({
+        width:  originalDim.width + grooves.w * amountGrooves.width,
+        height:  originalDim.height + grooves.h * amountGrooves.height
+      });
     };
 
     /**
@@ -652,6 +671,7 @@ window.onload = function(img) {
       getCleanSlides: getCleanSlides,
       displaySlides: displaySlides,
       putSlide: putSlide,
+      expandToGrooves: expandToGrooves,
       removeInitialSlide: removeInitialSlide,
       puzzleEnded: puzzleEnded
     };

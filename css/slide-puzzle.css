@@ -1,3 +1,4 @@
+
 html {
     background: url(../img/backgrounds/sky-sunny-clouds-cloudy.jpg) no-repeat center fixed;
     -webkit-background-size: cover;
@@ -19,7 +20,7 @@ html {
     position: relative;
     z-index: 10;
 
-    width: 730px;
+    width: 750px;
     margin: auto;
     margin-top: 120px;
     padding: 5px;
@@ -30,14 +31,11 @@ html {
 
 #puzzle figure {
     position: relative;
-
     float: left;
-
     width: 510px;
     height: 676px;
     margin: 0;
     padding: 0;
-
     border: 0;
     border: 1px solid #aaa;
 }
