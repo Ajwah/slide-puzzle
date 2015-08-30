@@ -474,7 +474,7 @@ window.onload = function(img) {
    * IIFE representing a closure for View.
    */
   (function() {
-    var _grooves = {w: 5, h: 7};
+    var _grooves = {w: 5, h: 5};
 
     /**
      * storage for url of image
@@ -636,10 +636,19 @@ window.onload = function(img) {
         height: _unitBlock.ah - 1
       };
 
-      _slidingBoard.css({
+      var newDim = {
         width:  originalDim.width + _grooves.w * amountGrooves.width,
         height:  originalDim.height + _grooves.h * amountGrooves.height
-      });
+      };
+
+      _slidingBoard.css(newDim);
+      updatePuzzleDim({width: newDim.width, height: newDim.height});
+    };
+
+    var updatePuzzleDim = function(dim) {
+      var buttonWidth = $('.nav li').width();
+      $('#puzzle').css({width: buttonWidth + dim.width, height: dim.height});
+      $('.nav li').css({height: dim.height / 3});
     };
 
     /**
@@ -666,6 +675,9 @@ window.onload = function(img) {
      */
     var init = function() {
       var _img = $('img');
+      updatePuzzleDim({width: _unitBlock.w * _unitBlock.aw,
+                       height: _unitBlock.h * _unitBlock.ah
+                     });
       _sliceImg();
       _img.remove();
     };
