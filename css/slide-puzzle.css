@@ -42,11 +42,10 @@ html {
 
 #ui {
     position: relative;
-
     float: left;
-
-    width: 200px;
-    padding: 10px 0 0 10px;
+    width: 201px;
+    padding: 0px 0 0 0px;
+    margin: 0;
 }
 
 .ui-draggable

@@ -249,6 +249,7 @@ window.onload = function(img) {
     var _getAdjacentSlides = function() {
       var slides = V.getSlides();
       var unitBlock = getUnitBlockInfo();
+      var grooves = V.getGrooves();
 
       /**
        * calculate the css coordinates of any adjacent neighbour i to empty square e
@@ -287,9 +288,9 @@ window.onload = function(img) {
       var _calculateAdjacentSquare = function(e, i) {
         var sign = (i < 2) ? 1 : -1; //0,1 is always a positive square distance whereas 2,3 are negative square distance
         //only 0 and 2 maintain that square distance horizontally
-        var left = (i % 2 === 0) ? e.left + sign * (unitBlock.w + 5): e.left;
+        var left = (i % 2 === 0) ? e.left + sign * (unitBlock.w + grooves.w): e.left;
         //only 1 and 3 maintain that square distance vertically
-        var top = (i % 2 !== 0) ? e.top + sign * (unitBlock.h + 5): e.top;
+        var top = (i % 2 !== 0) ? e.top + sign * (unitBlock.h + grooves.h): e.top;
         return {left: left, top: top};
       };
 
@@ -473,7 +474,7 @@ window.onload = function(img) {
    * IIFE representing a closure for View.
    */
   (function() {
-    var grooves = {w: 5, h: 5};
+    var _grooves = {w: 5, h: 7};
 
     /**
      * storage for url of image
@@ -545,6 +546,10 @@ window.onload = function(img) {
       return slides;
     };
 
+    var getGrooves = function() {
+      return {w: _grooves.w, h: _grooves.h};
+    };
+
     /**
      * extracts a rectangular selection from original image and places it at coordinates l, t
      *
@@ -585,8 +590,8 @@ window.onload = function(img) {
       for (h = 0; h < hEnd; h += _unitBlock.h) {
         for (w = 0; w < wEnd; w += _unitBlock.w) {
           _putImg(id,w,h);
-          C.savePos(w + grooves.w * (id % _unitBlock.aw),
-                    h + grooves.h * (Math.floor(id / _unitBlock.aw)));
+          C.savePos(w + _grooves.w * (id % _unitBlock.aw),
+                    h + _grooves.h * (Math.floor(id / _unitBlock.aw)));
           console.log(id, (id%_unitBlock.aw), Math.floor(id/_unitBlock.aw)+1);
           id++;
         }
@@ -632,8 +637,8 @@ window.onload = function(img) {
       };
 
       _slidingBoard.css({
-        width:  originalDim.width + grooves.w * amountGrooves.width,
-        height:  originalDim.height + grooves.h * amountGrooves.height
+        width:  originalDim.width + _grooves.w * amountGrooves.width,
+        height:  originalDim.height + _grooves.h * amountGrooves.height
       });
     };
 
@@ -669,6 +674,7 @@ window.onload = function(img) {
       init: init,
       getSlides: getSlides,
       getCleanSlides: getCleanSlides,
+      getGrooves: getGrooves,
       displaySlides: displaySlides,
       putSlide: putSlide,
       expandToGrooves: expandToGrooves,

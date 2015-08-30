@@ -1,4 +1,5 @@
-@font-face {
+@font-face
+{
     font-family: 'fontello';
     font-weight: normal;
     font-style: normal;
@@ -10,45 +11,60 @@
     url('../font/fontello.svg?39616105#fontello') format('svg');
 }
 
-[class*='icon-'] {
+[class*='icon-']
+{
     font-family: 'fontello';
     font-size: 6em;
     font-style: normal;
+
     speak: none;
 }
 
-.icon-play-1:after {
-    content: '\e801';
-}
-.icon-play-circled2:after {
+.icon-play-circled2:after
+{
     content: '\e802';
 }
-.icon-off:after {
+.icon-off:after
+{
     content: '\e803';
 }
-.icon-stop:after {
+.icon-stop:after
+{
     content: '\e804';
 }
-.icon-ccw:after {
+.icon-ccw:after
+{
     content: '\e805';
 }
 
-.nav {
-  list-style: none;
-  text-align: center;
+.nav
+{
+    list-style: none;
 }
 
-.nav li {
-  position: relative;
-  padding-top: 30px;
-  padding-bottom: 25px;
-  left: 15%;
-}
-
-.nav a {
-    line-height: 144px;
-    display: block;
+.nav li
+{
     position: relative;
+   /* bottom: 50%;
+    left: 15%;*/
+    width: 240px;
+    height: 226px;
+    /*padding-top: 30px;*/
+    /*padding-bottom: 25px;*/
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav a
+{
+    line-height: 144px;
+
+    position: relative;
+
+    display: block;
+
     width: 144px;
     height: 144px;
 
@@ -66,13 +82,17 @@
     box-shadow: 0 3px 8px #aaa, inset 0 2px 3px #fff;
 }
 
-.nav a:hover {
+
+.nav a:hover
+{
     text-decoration: none;
+
     color: #555;
     background: #f5f5f5;
 }
 
-.nav a:before {
+.nav a:before
+{
     position: absolute;
     z-index: -1;
     top: -18px;
@@ -90,6 +110,7 @@
     box-shadow: inset 0 8px 48px #ddd;
 }
 
-.nav a:active {
+.nav a:active
+{
     box-shadow: 0 3px 4px #aaa inset, 0 2px 3px #fff;
 }
