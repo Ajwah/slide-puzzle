@@ -204,7 +204,6 @@ window.onload = function(img) {
      */
     var _popInitialSquare = function() {
       var _initialSquare;
-      V.removeInitialSlide();
       _initialSquare = positions.shift();
       return _initialSquare;
     };
@@ -344,8 +343,8 @@ window.onload = function(img) {
         //position of the image _container to the window.
         var offset = {left: that.parent().offset().left,
                       top: that.parent().offset().top};
-        var x = [emptySquare.left + offset.left + 1,pos.left + offset.left + 1];
-        var y = [emptySquare.top + offset.top + 1,pos.top + offset.top + 1];
+        var x = [emptySquare.left + offset.left + 1, pos.left + offset.left + 1];
+        var y = [emptySquare.top + offset.top + 1, pos.top + offset.top + 1];
 
         //Containment is a draggable parameter that can be submitted to constrain the movement of the
         //draggable to a specific area. In this case the usage can be depicted as follows:
@@ -392,7 +391,7 @@ window.onload = function(img) {
               that.draggable('option', 'originalPos', {left: currentPos.left,
                                                        top: currentPos.top});
               //Put slide on place of empty square.
-              V.putSlide(that, {left: emptySquare.left, top: emptySquare.top}, function(){});
+              V.putSlide(that, {left: emptySquare.left, top: emptySquare.top}, 0);
               that.effect('shake', {
                 direction: direction(x,y),
                 distance: 5,
@@ -435,6 +434,16 @@ window.onload = function(img) {
       V.puzzleEnded();
     };
 
+    var toggleStartStop = function() {
+      if ($('#start').is(':visible')) {
+        $('#start').hide();
+        $('#pause').show();
+      } else {
+        $('#start').show();
+        $('#pause').hide();
+      }
+    };
+
     /**
      * initializes the puzzle game
      * <p> this requires: </p>
@@ -450,15 +459,40 @@ window.onload = function(img) {
      * @public
      */
     var init = function() {
-      var _initialSquare;
+      var _initialSquare = false;
+      $('#pause').hide();
       V.init();
-      _initialSquare = _popInitialSquare();
-      $('#start').on('click', function() {
-        V.expandToGrooves();
+      $('#off').on('click', function() {
+        location.reload();
+      });
+
+      $('#pause').on('click', function() {
+        _puzzleEnded();
+        toggleStartStop();
+      });
+
+      $('#restart').on('click', function() {
         emptySquare.left = _initialSquare.left;
         emptySquare.top = _initialSquare.top;
         _scrambleSlides();
-        _play(_getAdjacentSlides());
+        setTimeout(function (){
+          _play(_getAdjacentSlides());
+        }, 1000);
+      });
+
+      $('#start').on('click', function() {
+        _initialSquare = _initialSquare || _popInitialSquare();
+        toggleStartStop();
+        $('#puzzle').find('#0').effect("fold", {duration: 1000}, function() {
+          V.removeInitialSlide();
+          V.expandToGrooves();
+          emptySquare.left = _initialSquare.left;
+          emptySquare.top = _initialSquare.top;
+          _scrambleSlides();
+          setTimeout(function (){
+            _play(_getAdjacentSlides());
+          }, 1000);
+        });
       });
     };
 
@@ -565,6 +599,7 @@ window.onload = function(img) {
                   width: _unitBlock.w,
                   height: _unitBlock.h,
                   position: 'absolute',
+                  display: 'block',
                   top: t,
                   left: l,
                   backgroundImage: ['url(', _url, ')'].join(''),
@@ -609,7 +644,7 @@ window.onload = function(img) {
      */
     var displaySlides = function(slides, positions) {
       $.each(slides, function(i) {
-        putSlide(slides.eq(i), positions[i]);
+        putSlide(slides.eq(i), positions[i], 1000);
       });
     };
 
@@ -621,8 +656,8 @@ window.onload = function(img) {
      * @alias V.putSlide
      * @public
      */
-    var putSlide = function(slide, position, cb) {
-      slide.css(position);
+    var putSlide = function(slide, position, t) {
+      slide.animate(position, {duration: t});
     };
 
     var expandToGrooves = function() {
@@ -664,6 +699,8 @@ window.onload = function(img) {
 
     var puzzleEnded = function() {
       $("#ui").append("<div class='completed'><p>COMPLETED</p></div>");
+      _initialSlide.css({display: "block"});
+      console.log(_initialSlide);
       _slidingBoard.append(_initialSlide);
     };
 

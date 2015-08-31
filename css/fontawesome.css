@@ -14,12 +14,16 @@
 [class*='icon-']
 {
     font-family: 'fontello';
-    font-size: 6em;
+    font-size: 3em;
     font-style: normal;
 
     speak: none;
 }
 
+.icon-pause:after
+{
+    content: '\e800';
+}
 .icon-play-circled2:after
 {
     content: '\e802';
@@ -27,10 +31,6 @@
 .icon-off:after
 {
     content: '\e803';
-}
-.icon-stop:after
-{
-    content: '\e804';
 }
 .icon-ccw:after
 {
