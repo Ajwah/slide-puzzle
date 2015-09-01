@@ -290,6 +290,7 @@ window.onload = function(img) {
         var left = (i % 2 === 0) ? e.left + sign * (unitBlock.w + grooves.w): e.left;
         //only 1 and 3 maintain that square distance vertically
         var top = (i % 2 !== 0) ? e.top + sign * (unitBlock.h + grooves.h): e.top;
+        console.log({left: left, top: top});
         return {left: left, top: top};
       };
 
@@ -306,6 +307,7 @@ window.onload = function(img) {
           return acc || CHelper.compare(slides.eq(i).position(),v);
         }, false);
       });
+      console.log(adjacentSlides);
       return adjacentSlides;
     };
 

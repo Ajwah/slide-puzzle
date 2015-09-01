@@ -45,7 +45,9 @@ var CHelper = {};
    * @alias CHelper.compare
    */
   var compare = function(e1, e2) {
-    return (e1.left === e2.left && e1.top === e2.top);
+    var d = 3;
+    console.log('Comparing slide with coord: ', e1, ' to ', e2);
+    return (e1.left - d <= e2.left && e1.left + d >= e2.left && e1.top - d <= e2.top && e1.top + d >= e2.top);
   };
 
   /**
