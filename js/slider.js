@@ -287,9 +287,11 @@ window.onload = function(img) {
       var _calculateAdjacentSquare = function(e, i) {
         var sign = (i < 2) ? 1 : -1; //0,1 is always a positive square distance whereas 2,3 are negative square distance
         //only 0 and 2 maintain that square distance horizontally
-        var left = (i % 2 === 0) ? e.left + sign * (unitBlock.w + grooves.w): e.left;
+        var left = (i % 2 === 0) ? e.left + sign * (unitBlock.w + grooves.w) :
+                                   e.left;
         //only 1 and 3 maintain that square distance vertically
-        var top = (i % 2 !== 0) ? e.top + sign * (unitBlock.h + grooves.h): e.top;
+        var top = (i % 2 !== 0) ? e.top + sign * (unitBlock.h + grooves.h) :
+                                  e.top;
         console.log({left: left, top: top});
         return {left: left, top: top};
       };
@@ -316,7 +318,7 @@ window.onload = function(img) {
       var yAxis = ['up', '', 'down'];
       var dir = function(a, b) {
         var r = a - b;
-        return (r < 0) ? 0 : (r > 0) ? 2 : 1
+        return (r < 0) ? 0 : (r > 0) ? 2 : 1;
       };
       return xAxis[dir(xs[0], xs[1])] + yAxis[dir(ys[0], ys[1])];
     };
@@ -345,7 +347,8 @@ window.onload = function(img) {
         //position of the image _container to the window.
         var offset = {left: that.parent().offset().left,
                       top: that.parent().offset().top};
-        var x = [emptySquare.left + offset.left + 1, pos.left + offset.left + 1];
+        var x = [emptySquare.left + offset.left + 1,
+                 pos.left + offset.left + 1];
         var y = [emptySquare.top + offset.top + 1, pos.top + offset.top + 1];
 
         //Containment is a draggable parameter that can be submitted to constrain the movement of the
@@ -393,12 +396,13 @@ window.onload = function(img) {
               that.draggable('option', 'originalPos', {left: currentPos.left,
                                                        top: currentPos.top});
               //Put slide on place of empty square.
-              V.putSlide(that, {left: emptySquare.left, top: emptySquare.top}, 0);
+              V.putSlide(that,
+                         {left: emptySquare.left, top: emptySquare.top},
+                         0);
               that.effect('shake', {
                 direction: direction(x,y),
                 distance: 5,
-                times: 7}, 50, function(){
-                  console.log("Callback ");
+                times: 7}, 50, function() {
                   //Update position of empty square.
                   emptySquare.left = originalPos.left;
                   emptySquare.top = originalPos.top;
@@ -477,7 +481,7 @@ window.onload = function(img) {
         emptySquare.left = _initialSquare.left;
         emptySquare.top = _initialSquare.top;
         _scrambleSlides();
-        setTimeout(function (){
+        setTimeout(function() {
           _play(_getAdjacentSlides());
         }, 1000);
       });
@@ -485,13 +489,13 @@ window.onload = function(img) {
       $('#start').on('click', function() {
         _initialSquare = _initialSquare || _popInitialSquare();
         toggleStartStop();
-        $('#puzzle').find('#0').effect("fold", {duration: 1000}, function() {
+        $('#puzzle').find('#0').effect('fold', {duration: 1000}, function() {
           V.removeInitialSlide();
           V.expandToGrooves();
           emptySquare.left = _initialSquare.left;
           emptySquare.top = _initialSquare.top;
           _scrambleSlides();
-          setTimeout(function (){
+          setTimeout(function() {
             _play(_getAdjacentSlides());
           }, 1000);
         });
@@ -629,7 +633,6 @@ window.onload = function(img) {
           _putImg(id,w,h);
           C.savePos(w + _grooves.w * (id % _unitBlock.aw),
                     h + _grooves.h * (Math.floor(id / _unitBlock.aw)));
-          console.log(id, (id%_unitBlock.aw), Math.floor(id/_unitBlock.aw)+1);
           id++;
         }
       }
@@ -700,8 +703,8 @@ window.onload = function(img) {
     };
 
     var puzzleEnded = function() {
-      $("#ui").append("<div class='completed'><p>COMPLETED</p></div>");
-      _initialSlide.css({display: "block"});
+      $('#ui').append('<div class="completed"><p>COMPLETED</p></div>');
+      _initialSlide.css({display: 'block'});
       console.log(_initialSlide);
       _slidingBoard.append(_initialSlide);
     };
