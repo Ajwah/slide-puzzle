@@ -1,0 +1,8 @@
+{
+  "strict": true,
+  "undef": true,
+  "unused": true,
+  "validateQuoteMarks": { "mark": "\"", "escape": true },
+  "quotmark": true,
+  "predef": [ "$", "M", "V", "C", "window", "console" ]
+}
